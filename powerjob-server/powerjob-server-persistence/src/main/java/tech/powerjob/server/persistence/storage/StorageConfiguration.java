@@ -28,6 +28,12 @@ public class StorageConfiguration {
     }
 
     @Bean
+    @Conditional(OracleDfsService.OracleCondition.class)
+    public DFsService initOracleFs() {
+        return new OracleDfsService();
+    }
+
+    @Bean
     @Conditional(AliOssService.AliOssCondition.class)
     public DFsService initAliOssFs() {
         return new AliOssService();
