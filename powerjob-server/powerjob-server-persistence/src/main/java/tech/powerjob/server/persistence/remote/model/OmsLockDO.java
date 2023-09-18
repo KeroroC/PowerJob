@@ -3,6 +3,7 @@ package tech.powerjob.server.persistence.remote.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,7 +22,9 @@ public class OmsLockDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native", parameters = {
+            @Parameter(name = "sequence_name", value = "OMS_LOCK_SEQ")
+    })
     private Long id;
 
     private String lockName;
