@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -29,7 +30,9 @@ public class WorkflowInstanceInfoDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native", parameters = {
+            @Parameter(name = "sequence_name", value = "WORKFLOW_INSTANCE_INFO_SEQ")
+    })
     private Long id;
     /**
      * 任务所属应用的ID，冗余提高查询效率

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import tech.powerjob.common.enums.WorkflowNodeType;
 
 import javax.persistence.*;
@@ -28,7 +29,9 @@ public class WorkflowNodeInfoDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GenericGenerator(name = "native", strategy = "native", parameters = {
+            @Parameter(name = "sequence_name", value = "WORKFLOW_NODE_INFO_SEQ")
+    })
     private Long id;
 
     @Column(nullable = false)
